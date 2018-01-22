@@ -144,13 +144,20 @@ def encode(crops, model, preprocessor):
     return pooled_features
 
 
-img = cv2.imread("data/1.6484.4.tif")
-img_norm = normalizeStaining(img)
-for i in range(5):
-    img_aug = hematoxylin_eosin_aug(img_norm)
-    cv2.imwrite("data/1.6484.4.aug{}.tif".format(i), img_aug)
+if __name__ == '__main__':
 
-crops = get_crops_free(img_aug, PATCH_SZ, PATCHES_PER_IMAGE)
-for i, crop in enumerate(crops):
-    cv2.imwrite("data/tmp/crop{}.tif".format(i), crop)
-pass
+    img = cv2.imread("data/1.6484.4.tif")
+    # img = cv2.imread("data/ICIAR2018_BACH_Challenge/Photos/Invasive/iv073.tif")
+    # img = cv2.imread("data/ICIAR2018_BACH_Challenge/Photos/Normal/n068.tif")
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+    img_norm = normalizeStaining(img)
+    cv2.imwrite("data/1.6484.4.norm.tif", cv2.cvtColor(img_norm, cv2.COLOR_RGB2BGR))
+
+    for i in range(5):
+        img_aug = hematoxylin_eosin_aug(img_norm)
+        cv2.imwrite("data/1.6484.4.aug{}.tif".format(i), cv2.cvtColor(img_aug, cv2.COLOR_RGB2BGR))
+
+    crops = get_crops_free(img_aug, PATCH_SZ, PATCHES_PER_IMAGE)
+    for i, crop in enumerate(crops):
+        cv2.imwrite("data/tmp/crop{}.tif".format(i), cv2.cvtColor(crop, cv2.COLOR_RGB2BGR))
