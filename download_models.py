@@ -1,4 +1,5 @@
-"""Download and populate directories with models, features and CV predictions. Partially borrowed from Keras distribution"""
+#!/usr/bin/env python3
+# """Download and populate directories with models, features and CV predictions. Partially borrowed from Keras distribution"""
 
 import os
 import zipfile

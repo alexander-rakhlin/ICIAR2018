@@ -83,14 +83,15 @@ Model fusion   92.5 82.5 87.5 87.5 87.5 90.0 85.0 87.5 87.5 85.0 87.2 2.6
 
 Dependencies
 ------------
-* Python (>= 3.4)
-* Keras_ and Theano_ libraries must be installed. We did not test with ``Tensorflow`` backend, however it should work too.
-* LightGBM_ package is required.
-* Standard scientific Python stack (``NumPy, Pandas, SciPy, scikit-learn``) is required.
+* Python 3
+* Keras_ and Theano_ libraries. We did not test with ``Tensorflow`` backend, however it should work too.
+* LightGBM_ package.
+* Standard scientific Python stack: ``NumPy, Pandas, SciPy, scikit-learn``.
+* Other libraries: ``tqdm, six``
 
 How to run
 ----------
-Default directory structure is:
+For command line options use ``-h, --help``. If you use default directory structure, you can stick with default command line options. Default directory structure:
 
 ::
 
@@ -117,28 +118,34 @@ Default directory structure is:
               Inception
               .........
 
+You can preprocess the data independently, or use downloaded features. In the former case place the competition microscopy images into ``data\train|test`` directories. Please note the competition rules disallow us to redistribute the data.
 
-You can preprocess the data on your own or use downloaded descriptors. In the former case place the competition microscopy images into ``data\train|test`` directories. Notice the competition rules disallow us to redistribute the data.
-
-Download descriptors and pretrained models::
+1. Download feature files, trained models, and individual folded predictions. You can skip this step and extract features and train models yourself::
 
     python download_models.py
 
-In this step LightGBM models are being unpacked in ``models/LGBMs``. Pretrained CNN models - in ``models/CNNs`` directories. We provide CNN models just for reference. Keras loads them with its own distribution. Preprocessed descriptors reside in ``data/preprocessed/train|test`` directories.
+In this step LightGBM models are being unpacked in ``models/LGBMs``. CNN models - in ``models/CNNs`` directories. We provide CNN models just for reference: Keras loads them with its own distribution. Preprocessed features reside in ``data/preprocessed/train|test`` subdirectories. Crossvalidated predictions reside in ``predictions`` subdirectories. Skip to 4.
 
-To extract descriptors run this. You can skip this step if you are using preprocessed descriptors::
+2. To extract features run this. You can skip this step if you are using preprocessed features::
 
-    python feature_extractor.py --images <directory/containing/images/> --descriptors <directory/to/store/descriptors/>
+    python feature_extractor.py --images <directory/containing/images/> --features <directory/to/store/features/>
 
-Make sure preprocessed descriptors are contained in directory ``data/preprocessed/[test|train]/model_name/`` (or in directory you selected in previous step).
+Make sure preprocessed feature files are contained in directory ``data/preprocessed/[test|train]/model_name/`` (or other directory you selected in previous step).
 
-To run crossvalidation::
+3. To train LightGBM models using cross-validation and to generate predictions for all models, crop sizes, seeds, augmentations and folds run this. You can skip this step if you are using LightGBM models we provided::
+
+    python train_lgbm.py
+
+4. To combine predictions across all models, seeds and augmentations, and crossvalidate across all folds run::
 
     python crossvalidate_blending.py
 
-To generate solution::
+In this step you can use predictions pre-saved in step 3 during training (or provided with our data). Or you can have LightGBM models generate predictions anew with command line option ``--predict``. The latter increases running time, but does not affect result.
 
-    python submission.py --descriptors <directory/to/store/descriptors/> --submission <path/to/submission.csv>
+5. To generate solution::
+
+    python submission.py --features <directory/to/store/features/> --submission <path/to/submission.csv>
+
 
 .. _`Keras`: https://github.com/fchollet/keras/
 .. _`Theano`: http://deeplearning.net/software/theano/
