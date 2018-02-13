@@ -22,13 +22,12 @@ Breast cancer is one of the main causes of cancer death worldwide. Early diagnos
 
 Data
 ----
-The image dataset consists of 400 H&E stain images (:math:`2048\times1536` pixels). All the images are digitized with the same acquisition conditions, with a magnification of :math:`200\times` and pixel size of :math:`$0.42{\mu}m\times0.42{\mu}m$`. Each image is labeled with one of the four balanced classes: ``normal``, ``benign``, `in situ`, and ``invasive``, where class is defined as a predominant cancer type in the image. The image-wise annotation was performed by two medical experts. The goal of the challenge is to provide an automatic classification of each input image.
+The image dataset consists of 400 H&E stain images (2048 |times| 1536 pixels). All the images are digitized with the same acquisition conditions, with a magnification of 200 |times| and pixel size of 0.42 |micro| |times| 0.42 |micro|. Each image is labeled with one of the four balanced classes: ``normal``, ``benign``, `in situ`, and ``invasive``, where class is defined as a predominant cancer type in the image. The image-wise annotation was performed by two medical experts. The goal of the challenge is to provide an automatic classification of each input image.
 
 .. figure:: pics/classes_horizontal.png
     :scale: 80 %
 
-    Examples of microscopic biopsy images in the dataset: (A) normal; (B) benign; (C) in situ carcinoma; |br|
-    and (D) invasive carcinoma
+    Examples of microscopic biopsy images in the dataset: (A) normal; (B) benign; (C) in situ carcinoma; and (D) invasive carcinoma
 
 Method
 ------
@@ -50,11 +49,11 @@ To bring the microscopy images into a common space, we normalize the amount of H
 
 Training
 --------
-For cross-validation we split the data into 10 stratified folds to preserve class distribution. Augmentations increase the size of the dataset :math:`\times300` (:math:`2` patch sizes :math:`\times3` encoders :math:`\times50` color/affine augmentations). To prevent information leakage, all descriptors of an image must be contained in the same fold. For each combination of the encoder, crop size and scale we train 10 gradient boosting models with 10-fold cross-validation. Furthermore, we recycle each dataset 5 times with different random seeds in LightGBM adding augmentation on the model level. For the test data, we similarly extract 50 descriptors for each image and use them with all models trained for particular patch size and encoder. The predictions are averaged over all augmentations and models.
+For cross-validation we split the data into 10 stratified folds to preserve class distribution. Augmentations increase the size of the dataset |times| 300 (2 patch sizes |times| 3 encoders |times| 50 color/affine augmentations). To prevent information leakage, all descriptors of an image must be contained in the same fold. For each combination of the encoder, crop size and scale we train 10 gradient boosting models with 10-fold cross-validation. Furthermore, we recycle each dataset 5 times with different random seeds in LightGBM adding augmentation on the model level. For the test data, we similarly extract 50 descriptors for each image and use them with all models trained for particular patch size and encoder. The predictions are averaged over all augmentations and models.
 
 Results
 -------
-To validate the approach we use 10-fold stratified cross-validation. For 2-class non-carcinomas (``normal`` and ``benign``) vs. carcinomas (`in situ` and ``invasive``) classification accuracy was :math:`93.8\pm2.3\%`, the area under the ROC curve was 0.973. Out of 200 carcinomas cases only 9 `in situ` and 5 ``invasive`` were missed. For 4-class classification accuracy averaged across all folds was :math:`87.2\pm2.6\%`.
+To validate the approach we use 10-fold stratified cross-validation. For 2-class non-carcinomas (``normal`` and ``benign``) vs. carcinomas (`in situ` and ``invasive``) classification accuracy was 93.8 |plusmn| 2.3%, the area under the ROC curve was 0.973. Out of 200 carcinomas cases only 9 `in situ` and 5 ``invasive`` were missed. For 4-class classification accuracy averaged across all folds was 87.2 |plusmn| 2.6%.
 
 |
 
@@ -158,3 +157,15 @@ In this step you can use predictions pre-saved in step 3 during training (or pro
 .. |br| raw:: html
 
    <br />
+
+.. |plusmn| raw:: html
+
+   &plusmn
+
+.. |times| raw:: html
+
+   &times
+
+.. |micro| raw:: html
+
+   &microm
