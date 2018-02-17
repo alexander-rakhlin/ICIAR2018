@@ -117,6 +117,32 @@ For command line options use ``-h, --help``. If you use default directory struct
               Inception
               .........
 
+
+::
+
+ └── ICIAR2018
+     ├── submission
+     ├── data
+     │   ├── train
+     │   │   ├── Benign
+     │   │   └── ......
+     │   ├── test
+     │   └── preprocessed
+     │       ├── train
+     │       │   ├── Inception0.5-400
+     │       │   └── ................
+     │       └── test
+     │           ├── Inception-0.5-400
+     │           └── .................
+     ├── models
+     │   ├── LGBMs
+     │   │   ├── Inception
+     │   │   └── .........
+     │   └── CNNs
+     └── predictions
+         ├── Inception
+         └── .........
+
 You can preprocess the data independently, or use downloaded features. In the former case place the competition microscopy images into ``data\train|test`` directories. Please note the competition rules disallow us to redistribute the data.
 
 1. Download feature files, trained models, and individual folded predictions. You can skip this step and extract features and train models yourself::
