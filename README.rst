@@ -119,17 +119,17 @@ For command line options use ``-h, --help``. If you use default directory struct
 
 You can preprocess the data independently, or use downloaded features. In the former case place the competition microscopy images into ``data\train|test`` directories. Please note the competition rules disallow us to redistribute the data.
 
-1. Download feature files, trained models, and individual folded predictions and skip to 4. Downloaded LightGBM models are being unpacked in ``models/LGBMs``. CNN models - in ``models/CNNs`` directories. We provide CNN models just for reference: Keras loads them with its own distribution. Preprocessed features reside in ``data/preprocessed/train|test`` subdirectories. Crossvalidated predictions reside in ``predictions`` subdirectories::
+1. Download feature files, trained models, and individual folded predictions and skip to 4::
 
     python download_models.py
 
-Alternatively, you can skip this step and extract features and train models yourself.
+Downloaded LightGBM models are being unpacked in ``./models/LGBMs``, CNN models - in ``./models/CNNs`` directories. We provide CNN models just for reference: Keras loads them with its own distribution. Preprocessed features reside in ``./data/preprocessed/train|test`` subdirectories. Crossvalidated predictions reside in ``./predictions`` subdirs. Alternatively, you can skip this step and extract features and train models yourself.
 
 2. To extract features run this. You can skip this step if you are using preprocessed features::
 
     python feature_extractor.py --images <directory/containing/images/> --features <directory/to/store/features/>
 
-Make sure preprocessed feature files are contained in directory ``data/preprocessed/[test|train]/model_name/`` (or other directory you selected in previous step).
+By default preprocessed feature files are contained in directory ``data/preprocessed/[test|train]/model_name/``.
 
 3. To train LightGBM models using cross-validation and to generate predictions for all models, crop sizes, seeds, augmentations and folds run this. You can skip this step if you are using LightGBM models we provided::
 
