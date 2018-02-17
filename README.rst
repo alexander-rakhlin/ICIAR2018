@@ -90,33 +90,7 @@ Dependencies
 
 How to run
 ----------
-For command line options use ``-h, --help``. If you use default directory structure, you can stick with default command line options. Default directory structure:
-
-::
-
-    ICIAR2018
-          submission
-          data
-              train
-                  Benign
-                  ......
-              test
-              preprocessed
-                      train
-                          Inception0.5-400
-                          ................
-                      test
-                          Inception-0.5-400
-                          .................
-          models
-              LGBMs
-                  Inception
-                  .........
-              CNNs
-          predictions
-              Inception
-              .........
-
+For command line options use ``-h, --help``. If you use default directory structure, you can stick with default command line options. Default directory structure is:
 
 ::
 
@@ -145,11 +119,11 @@ For command line options use ``-h, --help``. If you use default directory struct
 
 You can preprocess the data independently, or use downloaded features. In the former case place the competition microscopy images into ``data\train|test`` directories. Please note the competition rules disallow us to redistribute the data.
 
-1. Download feature files, trained models, and individual folded predictions. You can skip this step and extract features and train models yourself::
+1. Download feature files, trained models, and individual folded predictions and skip to 4. Downloaded LightGBM models are being unpacked in ``models/LGBMs``. CNN models - in ``models/CNNs`` directories. We provide CNN models just for reference: Keras loads them with its own distribution. Preprocessed features reside in ``data/preprocessed/train|test`` subdirectories. Crossvalidated predictions reside in ``predictions`` subdirectories::
 
     python download_models.py
 
-In this step LightGBM models are being unpacked in ``models/LGBMs``. CNN models - in ``models/CNNs`` directories. We provide CNN models just for reference: Keras loads them with its own distribution. Preprocessed features reside in ``data/preprocessed/train|test`` subdirectories. Crossvalidated predictions reside in ``predictions`` subdirectories. Skip to 4.
+Alternatively, you can skip this step and extract features and train models yourself.
 
 2. To extract features run this. You can skip this step if you are using preprocessed features::
 
