@@ -14,7 +14,16 @@ Team members
 
 Reference Paper
 ---------------
-Rakhlin, A., Shvets, A., Iglovikov, V., Kalinin, A.: Deep Convolutional Neural Networks for Breast Cancer Histology Image Analysis. bioRxiv p. 259911 (2018), `link <https://doi.org/10.1101/259911>`_
+Rakhlin, A., Shvets, A., Iglovikov, V., Kalinin, A.: Deep Convolutional Neural Networks for Breast Cancer Histology Image Analysis. bioRxiv p. 259911 (2018), `link <https://arxiv.org/abs/1802.00752>`_
+
+If you find this work useful for your publications, please consider citing::
+
+    @article{rakhlin2018deep,
+      title={Deep Convolutional Neural Networks for Breast Cancer Histology Image Analysis},
+      author={Rakhlin, Alexander and Shvets, Alexey and Iglovikov, Vladimir and Kalinin, Alexandr A},
+      journal={arXiv preprint arXiv:1802.00752},
+      year={2018}
+    }
 
 Overview
 --------
