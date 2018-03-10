@@ -14,7 +14,16 @@ Team members
 
 Reference Paper
 ---------------
-Rakhlin, A., Shvets, A., Iglovikov, V., Kalinin, A.: Deep Convolutional Neural Networks for Breast Cancer Histology Image Analysis. bioRxiv p. 259911 (2018), `link <https://doi.org/10.1101/259911>`_
+Rakhlin, A., Shvets, A., Iglovikov, V., Kalinin, A.: Deep Convolutional Neural Networks for Breast Cancer Histology Image Analysis. bioRxiv p. 259911 (2018), `link <https://arxiv.org/abs/1802.00752>`_
+
+If you find this work useful for your publications, please consider citing::
+
+    @article{rakhlin2018deep,
+      title={Deep Convolutional Neural Networks for Breast Cancer Histology Image Analysis},
+      author={Rakhlin, Alexander and Shvets, Alexey and Iglovikov, Vladimir and Kalinin, Alexandr A},
+      journal={arXiv preprint arXiv:1802.00752},
+      year={2018}
+    }
 
 Overview
 --------
@@ -90,46 +99,46 @@ Dependencies
 
 How to run
 ----------
-For command line options use ``-h, --help``. If you use default directory structure, you can stick with default command line options. Default directory structure:
+For command line options use ``-h, --help``. If you use default directory structure, you can stick with default command line options. Default directory structure is:
 
 ::
 
-    ICIAR2018
-          submission
-          data
-              train
-                  Benign
-                  ......
-              test
-              preprocessed
-                      train
-                          Inception0.5-400
-                          ................
-                      test
-                          Inception-0.5-400
-                          .................
-          models
-              LGBMs
-                  Inception
-                  .........
-              CNNs
-          predictions
-              Inception
-              .........
+ └── ICIAR2018
+     ├── submission
+     ├── data
+     │   ├── train
+     │   │   ├── Benign
+     │   │   └── ......
+     │   ├── test
+     │   └── preprocessed
+     │       ├── train
+     │       │   ├── Inception0.5-400
+     │       │   └── ................
+     │       └── test
+     │           ├── Inception-0.5-400
+     │           └── .................
+     ├── models
+     │   ├── LGBMs
+     │   │   ├── Inception
+     │   │   └── .........
+     │   └── CNNs
+     └── predictions
+         ├── Inception
+         └── .........
 
 You can preprocess the data independently, or use downloaded features. In the former case place the competition microscopy images into ``data\train|test`` directories. Please note the competition rules disallow us to redistribute the data.
 
-1. Download feature files, trained models, and individual folded predictions. You can skip this step and extract features and train models yourself::
+1. Download feature files, trained models, and individual folded predictions and skip to 4::
 
     python download_models.py
 
-In this step LightGBM models are being unpacked in ``models/LGBMs``. CNN models - in ``models/CNNs`` directories. We provide CNN models just for reference: Keras loads them with its own distribution. Preprocessed features reside in ``data/preprocessed/train|test`` subdirectories. Crossvalidated predictions reside in ``predictions`` subdirectories. Skip to 4.
+Downloaded LightGBM models are being unpacked in ``./models/LGBMs``, CNN models - in ``./models/CNNs`` directories. We provide CNN models just for reference: Keras loads them with its own distribution. Preprocessed features reside in ``./data/preprocessed/train|test`` subdirectories. Crossvalidated predictions reside in ``./predictions`` subdirs. Alternatively, you can skip this step and extract features and train models yourself.
 
 2. To extract features run this. You can skip this step if you are using preprocessed features::
 
     python feature_extractor.py --images <directory/containing/images/> --features <directory/to/store/features/>
 
-Make sure preprocessed feature files are contained in directory ``data/preprocessed/[test|train]/model_name/`` (or other directory you selected in previous step).
+By default preprocessed feature files are contained in directory ``data/preprocessed/[test|train]/model_name/``.
 
 3. To train LightGBM models using cross-validation and to generate predictions for all models, crop sizes, seeds, augmentations and folds run this. You can skip this step if you are using LightGBM models we provided::
 
