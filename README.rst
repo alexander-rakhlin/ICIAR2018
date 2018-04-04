@@ -159,7 +159,7 @@ In this step you can use predictions pre-saved in step 3 during training (or pro
 .. _`Theano`: http://deeplearning.net/software/theano/
 .. _`LightGBM`: https://lightgbm.readthedocs.io/en/latest/
 .. _`Alexander Rakhlin`: https://www.linkedin.com/in/alrakhlin/
-.. _`Alexey Shvets`: https://www.linkedin.com/in/alexey-shvets-b0215263/
+.. _`Alexey Shvets`: https://www.linkedin.com/in/shvetsiya/
 .. _`Vladimir Iglovikov`: https://www.linkedin.com/in/iglovikov/
 .. _`Alexandr A. Kalinin`: https://alxndrkalinin.github.io/
 .. _`ICIAR 2018 Grand Challenge on Breast Cancer Histology Images`: https://grand-challenge.org/site/ICIAR2018-Challenge/
