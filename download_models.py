@@ -12,7 +12,8 @@ from tqdm import tqdm
 
 DEFAULT_MD5 = "5d92cd351ada73ccbc7a15c879a65b40"
 DEFAULT_FNAME = "ICIAR2018_data.zip"
-DEFAULT_URL = "https://www.dropbox.com/s/1vwsfekuxc50cfm/ICIAR2018_data.zip?dl=1"
+# DEFAULT_URL = "https://www.dropbox.com/s/1vwsfekuxc50cfm/ICIAR2018_data.zip?dl=1"
+DEFAULT_URL = "https://www.dropbox.com/s/oklwgz5v9suyj1k/ICIAR2018_data.zip?dl=1"
 
 
 def _extract_archive(file_path, path="."):
