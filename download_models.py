@@ -10,7 +10,8 @@ import argparse
 from tqdm import tqdm
 
 
-DEFAULT_MD5 = "5d92cd351ada73ccbc7a15c879a65b40"
+# DEFAULT_MD5 = "5d92cd351ada73ccbc7a15c879a65b40"
+DEFAULT_MD5 = "5A3C6F5EC649562ABD6013DE988D1AAE"
 DEFAULT_FNAME = "ICIAR2018_data.zip"
 # DEFAULT_URL = "https://www.dropbox.com/s/1vwsfekuxc50cfm/ICIAR2018_data.zip?dl=1"
 DEFAULT_URL = "https://www.dropbox.com/s/oklwgz5v9suyj1k/ICIAR2018_data.zip?dl=1"
