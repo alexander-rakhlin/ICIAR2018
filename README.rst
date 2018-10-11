@@ -97,6 +97,8 @@ Dependencies
 * Standard scientific Python stack: ``NumPy, Pandas, SciPy, scikit-learn``.
 * Other libraries: ``tqdm, six``
 
+For feature extraction we used Nvidia GeForce GTX 980 Graphics Card with 4GB memory. For less powerful GPU please consider decreasing `BATCH_SIZE` in `feature_extractor.py`
+
 How to run
 ----------
 For command line options use ``-h, --help``. If you use default directory structure, you can stick with default command line options. Default directory structure is:
